@@ -28,6 +28,11 @@ const URLForm: React.FC = () => {
     [url]
   );
 
+  const handleLinkClick = () => {
+    setUrl("");
+    setShortenUrl("");
+  }
+
   return (
     <div role="container" className="container">
       <h1 className="title">URL SHORTENER</h1>
@@ -48,7 +53,7 @@ const URLForm: React.FC = () => {
       {errorMessage === true ? <p>Please introduce a valid URL</p> : ""}
       {shortenUrl && (
         <div className="new-url-container">
-          <a className="url" href={shortenUrl} target="_blank" rel="noopener noreferrer">
+          <a className="url" href={shortenUrl} onClick={handleLinkClick} target="_blank" rel="noopener noreferrer">
             {shortenUrl}
           </a>
         </div>
