@@ -40,4 +40,30 @@
   color: rgb(245, 245, 245);
   padding: 10px;
   cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+.button:hover {
+  background: rgb(250, 170, 22);
+  border-color: rgb(250, 170, 22);
+  font-weight: 600;
+}
+
+.new-url-container {
+  border: solid;
+  border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.url {
+  text-decoration: none;
+  color: rgb(245, 245, 245);
+}
+
+.url:hover {
+  cursor: pointer;
+  color: rgb(250, 170, 22);
 }

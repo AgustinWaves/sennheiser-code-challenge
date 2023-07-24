@@ -3,6 +3,8 @@ import axios from "axios";
 
 const URLForm: React.FC = () => {
   const [url, setUrl] = useState("");
+  const [shortenUrl, setShortenUrl] = useState("");
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent<HTMLFormElement>) => {
@@ -14,12 +16,18 @@ const URLForm: React.FC = () => {
         );
         const result = response.data;
         console.log(result);
+        setShortenUrl(result.result.full_short_link);
+        setErrorMessage(false);
       } catch (error) {
         console.log("Error shortening URL:", error);
+        if (error) {
+          setErrorMessage(true);
+        }
       }
     },
     [url]
   );
+
   return (
     <div role="container" className="container">
       <h1 className="title">URL SHORTENER</h1>
@@ -37,6 +45,14 @@ const URLForm: React.FC = () => {
           CREATE SHORT URL
         </button>
       </form>
+      {errorMessage === true ? <p>Please introduce a valid URL</p> : ""}
+      {shortenUrl && (
+        <div className="new-url-container">
+          <a className="url" href={shortenUrl} target="_blank" rel="noopener noreferrer">
+            {shortenUrl}
+          </a>
+        </div>
+      )}
     </div>
   );
 };
